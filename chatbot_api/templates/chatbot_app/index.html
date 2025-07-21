@@ -1,0 +1,477 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Python Rangers - ChatBot</title>
+  <style>
+
+     html {
+    scroll-behavior: smooth;
+  }
+
+    * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #261755, #180aa3 40%, #cc3030 80%);
+      background-size: cover;
+      background-attachment: fixed;
+      color: white;
+      max-height: 100%;
+      /* Padding will be handled by the container */
+    }
+    
+    .container {
+      padding: 30px;
+      margin: 2px auto;
+      max-width: 90%;
+      position: relative;
+      z-index: 1;
+      padding-top: 120px; /* Space for the fixed nav */
+    }
+    
+    .main-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      max-height: 100vh;
+      height: 600px;
+      padding: 20px;
+    }
+
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      padding: 20px 0;
+      z-index: 1000;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    nav.hide-on-scroll {
+  transform: translateY(-100%);
+  transition: transform 0.3s ease-in-out;
+}
+
+
+    nav .logo {
+      position: absolute;
+      left: 5%;
+      top: 70%;
+      transform: translateY(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    nav .logo img {
+      height: 40px;
+      margin-bottom: 1px;
+    }
+
+    nav .logo-text {
+   font-weight: bold;
+  font-size: 22px; /* Tamanho do texto, ajuste conforme necessário */
+  color: white; /* Cor do texto, ajuste se necessário */
+}
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 58px;
+      padding: 0;
+      margin: 0;
+      flex-wrap: wrap;
+    }
+
+    nav ul li a {
+      text-decoration: none;
+      color: white;
+      font-size: 22px;
+    }
+
+    nav ul li a:hover {
+      text-decoration: underline;
+    }
+
+    h1 {
+      font-size: 8rem;
+      font-weight: 700;
+      margin-bottom: 60px;
+  margin: 0;
+    }
+
+    .creditos {
+      font-size: 1rem;
+      font-weight: 700;
+      margin-bottom: 150px;
+      text-align: center;
+    }
+
+    .chatbot-toggle-button {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      background-color: #1d0dad;
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 60px;
+      height: 60px;
+      font-size: 24px;
+      cursor: pointer;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+      z-index: 99999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .chatbot-container {
+      position: fixed;
+      bottom: 90px;
+      right: 20px;
+      background-color: #fafafc;
+      border-radius: 15px;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+      width: 100%;
+      max-width: 400px;
+      height: 500px;
+      display: none;
+      flex-direction: column;
+      overflow: hidden;
+      z-index: 999;
+      transition: all 0.3s ease;
+    }
+
+    .chatbot-header {
+      background-color: #1d0dad;
+      color: white;
+      padding: 15px 20px;
+      font-size: 1.2em;
+      font-weight: bold;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .chatbot-header .close-btn {
+      background: none;
+      border: none;
+      color: white;
+      font-size: 18px;
+      cursor: pointer;
+    }
+
+    #chat-box {
+      flex-grow: 1;
+      padding: 15px;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      scrollbar-width: thin;
+      scrollbar-color: #1d0dad #3a3a5a;
+    }
+
+    #chat-box::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    #chat-box::-webkit-scrollbar-track {
+      background: #3a3a5a;
+    }
+
+    #chat-box::-webkit-scrollbar-thumb {
+      background-color: #6a0dad;
+      border-radius: 10px;
+      border: 2px solid #3a3a5a;
+    }
+
+    .message {
+      max-width: 80%;
+      padding: 10px 15px;
+      border-radius: 18px;
+      word-wrap: break-word;
+    }
+
+    .user-message {
+      background-color: #573deb;
+      color: white;
+      align-self: flex-end;
+      border-bottom-right-radius: 5px;
+    }
+
+    .bot-message {
+      background-color: #3a3a5a;
+      color: #e0e0e0;
+      align-self: flex-start;
+      border-bottom-left-radius: 5px;
+    }
+
+    .loading-message {
+      background-color: #4a4a6a;
+      color: #e0e0e0;
+      align-self: flex-start;
+      padding: 10px 15px;
+      border-radius: 18px;
+      border-bottom-left-radius: 5px;
+      font-style: italic;
+      opacity: 0.8;
+    }
+
+    .chatbot-input-area {
+      display: flex;
+      padding: 15px;
+      border-top: 1px solid #4a4a6a;
+    }
+
+    #user-input {
+      flex-grow: 1;
+      padding: 12px;
+      border: none;
+      border-radius: 25px;
+      background-color: #3a3a5a;
+      color: #e0e0e0;
+      font-size: 1em;
+      outline: none;
+      margin-right: 10px;
+    }
+
+    #user-input::placeholder {
+      color: #b0b0b0;
+    }
+
+    button {
+      background-color: #1d0dad;
+      color: white;
+      border: none;
+      border-radius: 25px;
+      padding: 12px 20px;
+      cursor: pointer;
+      font-size: 1em;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover:not(:disabled) {
+      background-color: #3547f0;
+    }
+
+    button:disabled {
+      background-color: #4a4a6a;
+      cursor: not-allowed;
+      opacity: 0.7;
+    }
+
+    /* Responsivo */
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 3.5rem;
+      }
+
+      nav ul {
+        gap: 20px;
+        justify-content: center;
+      }
+
+      .chatbot-container {
+        right: 10px;
+        bottom: 80px;
+        width: 90%;
+        height: 450px;
+      }
+
+      .chatbot-toggle-button {
+        right: 15px;
+        bottom: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <nav>
+      <div class="logo">
+        <a href="{% url 'chatbot_app:home' %}"><img src="{% static 'logo-python-rangers.png' %}" alt="Logo"></a>
+        <span class="logo-text">Python Rangers</span> 
+      </div>
+      <ul>
+        <li>
+          {% if request.resolver_match.url_name == 'oque' %}
+            <strong><a href="{% url 'chatbot_app:oque' %}">O que é?</a></strong>
+          {% else %}
+            <a href="{% url 'chatbot_app:oque' %}">O que é?</a>
+          {% endif %}
+        </li>
+        <li>
+          {% if request.resolver_match.url_name == 'como_funciona' %}
+            <strong><a href="{% url 'chatbot_app:como_funciona' %}">Como Funciona?</a></strong>
+          {% else %}
+            <a href="{% url 'chatbot_app:como_funciona' %}">Como Funciona?</a>
+          {% endif %}
+        </li>
+        <li>
+          {% if request.resolver_match.url_name == 'componentes_chaves' %}
+            <strong><a href="{% url 'chatbot_app:componentes_chaves' %}">Estrutura</a></strong>
+          {% else %}
+            <a href="{% url 'chatbot_app:componentes_chaves' %}">Estrutura</a>
+          {% endif %}
+        </li>
+        <li>
+          {% if request.resolver_match.url_name == 'arquivos' %}
+            <strong><a href="{% url 'chatbot_app:arquivos' %}">Arquivos</a></strong>
+          {% else %}
+            <a href="{% url 'chatbot_app:arquivos' %}">Arquivos</a>
+          {% endif %}
+        </li>
+        <li>
+          {% if request.resolver_match.url_name == 'consideracoes' %}
+            <strong><a href="{% url 'chatbot_app:consideracoes' %}">Considerações</a></strong>
+          {% else %}
+            <a href="{% url 'chatbot_app:consideracoes' %}">Considerações</a>
+          {% endif %}
+        </li>
+        <li>
+          {% if request.resolver_match.url_name == 'sobre_nos' %}
+            <strong><a href="{% url 'chatbot_app:sobre_nos' %}">Sobre Nós</a></strong>
+          {% else %}
+            <a href="{% url 'chatbot_app:sobre_nos' %}">Sobre Nós</a>
+          {% endif %}
+        </li>
+      </ul>
+    </nav>
+
+    {% block content %}
+    <div class="main-content">
+      <h1>Protótipo ADA</h1>
+    </div>
+    {% endblock %}
+
+    <button class="chatbot-toggle-button" onclick="toggleChatbot()">💬</button>
+
+    <div class="chatbot-container" id="chatbot">
+      <div class="chatbot-header">
+               PROTÓTIPO ADA
+        <button class="close-btn" onclick="toggleChatbot()">✖</button>
+      </div>
+      <div id="chat-box"></div>
+      <div class="chatbot-input-area">
+        <input type="text" id="user-input" placeholder="Digite sua mensagem..." maxlength="150">
+        <button id="send-button" onclick="sendMessage()">Enviar</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const chatBox = document.getElementById('chat-box');
+    const userInput = document.getElementById('user-input');
+    const sendButton = document.getElementById('send-button');
+    const chatbot = document.getElementById('chatbot');
+    let isSending = false;
+    let loadingMessageDiv = null;
+
+    function toggleChatbot() {
+      chatbot.style.display = chatbot.style.display === 'flex' ? 'none' : 'flex';
+    }
+
+    function addMessage(text, sender) {
+      const messageDiv = document.createElement('div');
+      messageDiv.className = `message ${sender}-message`;
+      messageDiv.textContent = text;
+      chatBox.appendChild(messageDiv);
+      chatBox.scrollTop = chatBox.scrollHeight;
+      return messageDiv;
+    }
+
+    function toggleInputState(disabled) {
+      userInput.disabled = disabled;
+      sendButton.disabled = disabled;
+      isSending = disabled;
+    }
+
+    async function sendMessage() {
+      if (isSending) return;
+
+      const message = userInput.value.trim();
+      if (!message) return;
+      if (message.length > 150) {
+        alert('A sua pergunta não pode ter mais de 150 caracteres.');
+        return;
+      }
+
+      addMessage(message, 'user');
+      userInput.value = '';
+      toggleInputState(true);
+      loadingMessageDiv = addMessage('Digitando...', 'loading');
+
+      try {
+        const response = await fetch('/chat/', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ message: message })
+        });
+
+        if (loadingMessageDiv && chatBox.contains(loadingMessageDiv)) {
+          chatBox.removeChild(loadingMessageDiv);
+        }
+
+        if (!response.ok) {
+          const errorData = await response.json();
+          throw new Error(errorData.error || 'Erro na requisição');
+        }
+
+        const data = await response.json();
+        addMessage(data.response, 'bot');
+
+      } catch (error) {
+        if (loadingMessageDiv && chatBox.contains(loadingMessageDiv)) {
+          chatBox.removeChild(loadingMessageDiv);
+        }
+        addMessage('Erro ao processar: ' + error.message, 'bot');
+      } finally {
+        toggleInputState(false);
+      }
+    }
+
+    userInput.addEventListener('keypress', function(event) {
+      if (event.key === 'Enter') sendMessage();
+    });
+
+    window.onload = function() {
+      addMessage('Olá! Como posso ajudar você hoje?', 'bot');
+    };
+
+    let lastScrollTop = 0;
+  const navbar = document.querySelector('nav');
+
+  window.addEventListener("scroll", function() {
+    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+    if (scrollTop > lastScrollTop) {
+      // Rolando para baixo
+      navbar.classList.add('hide-on-scroll');
+    } else {
+      // Rolando para cima
+      navbar.classList.remove('hide-on-scroll');
+    }
+
+    lastScrollTop = scrollTop <= 0 ? 0 : scrollTop; // Evita valor negativo
+  }, false);
+
+  
+  </script>
+</body>
+</html>

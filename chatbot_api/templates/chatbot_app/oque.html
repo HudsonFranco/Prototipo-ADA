@@ -1,0 +1,35 @@
+{% extends 'chatbot_app/index.html' %}
+{% load static %}
+{% block content %}
+  <style>
+    body {
+      background: linear-gradient(135deg, #000000 0%, #09033d 100%);
+      max-height: 10vh;
+      
+  overflow: hidden; /* Oculta ambas as barras de rolagem */
+
+    }
+  </style>
+  <div class="main-content">
+    <!-- ...restante do seu conteúdo... -->
+    <div style="display: flex; justify-content: center; gap: 50px; margin-top: -100px;">
+      <div style="background: linear-gradient(135deg, #0f0f0f, #3c2a56 50%, #0f0f0f);
+  border-radius: 25px;
+  padding: 40px 35px;
+  width: 430px;
+  text-align: left;
+  box-shadow: 0 0 30px #0002;
+">
+        <h2 style="font-size: 3rem; margin-bottom: 25px; color: #fff; font-weight: 700;">O que é?</h2>
+        <p style="font-size: 1.25rem; line-height: 1.6; color: #fff;">
+          <br>Imagine ter um assistente virtual sempre pronto para responder às suas perguntas sobre o curso Jovem Programador. <br> <br> <br> Esse é o nosso ChatBot! Ele foi criado para ser um guia amigável, disponível 24 horas por dia, 7 dias por semana.
+        </p>
+      </div>
+      <div style="background: linear-gradient(135deg, #3d0073, #ff1f1f, #ff00b8); border-radius: 25px; padding: 40px 35px; width: 430px; text-align: left; color: #fff; box-shadow: 0 0 30px #0002;">
+        <h2 style="font-size: 3rem; margin-bottom: 25px; font-weight: 700;">Para que serve?</h2>
+        <p style="font-size: 1.25rem; line-height: 1.6;">
+          <b style="color:#fff;">O chatbot reúne as informações mais importantes, oferece respostas instantâneas e ajuda alunos e interessados a encontrarem o que precisam com autonomia.<br><br>
+      </div>
+    </div>
+  </div>
+{% endblock %}

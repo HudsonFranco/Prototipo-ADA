@@ -1,0 +1,201 @@
+{% extends 'chatbot_app/index.html' %}
+{% load static %}
+{% block content %}
+<style>
+  body {
+    background: linear-gradient(135deg, #000000 0%, #09033d 100%);    
+    background-attachment: fixed;
+    color: #fff;
+  }
+
+  .page-container {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 60px;
+  }
+
+  .info-section {
+    display: flex;
+    align-items: stretch; /* Make cards same height */
+    justify-content: center;
+    gap: 40px;
+  }
+
+  .text-card {
+    background: linear-gradient(135deg, #0f0f0f, #3c2a56 50%, #0f0f0f);
+    padding: 40px;
+    border-radius: 20px;
+    flex-basis: 50%;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .image-card {
+    flex-basis: 50%;
+    background-color: #1E1E1E;
+    border: 1px solid #ff00b8;
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+    font-family: 'Roboto Mono', monospace;
+    color: #d4d4d4;
+  }
+
+  .text-card h2 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-top: 0;
+    margin-bottom: 20px;
+  }
+
+  .text-card p {
+    font-size: 1.2rem;
+    line-height: 1.6;
+    margin-bottom: 15px;
+  }
+  
+  .text-card code {
+    background-color: rgba(0,0,0,0.3);
+    padding: 3px 7px;
+    border-radius: 5px;
+    font-family: 'Roboto Mono', monospace;
+  }
+
+  /* Project Structure Specific Styles */
+  .file-tree {
+    list-style: none;
+    padding-left: 0;
+  }
+  .file-tree li {
+    padding: 4px 0 4px 20px;
+    position: relative;
+  }
+  .file-tree .folder > span {
+    font-weight: bold;
+    color: #569cd6;
+  }
+  .file-tree .file {
+    color: #d4d4d4;
+  }
+  .file-tree .icon {
+    margin-right: 8px;
+  }
+  .file-tree .folder > .icon::before {
+    content: '> ';
+    font-weight: bold;
+  }
+   .file-tree .sub-folder {
+    padding-left: 20px;
+   }
+
+  /* GitHub Branches Specific Styles */
+  .branches-header {
+    display: flex;
+    border-bottom: 1px solid #444;
+    padding-bottom: 10px;
+    margin-bottom: 15px;
+  }
+  .branches-header span {
+    margin-right: 20px;
+    cursor: pointer;
+  }
+  .branches-header span.active {
+    font-weight: bold;
+    color: white;
+    border-bottom: 2px solid #e36209;
+  }
+  .branch-list {
+    list-style: none;
+    padding: 0;
+  }
+  .branch-list li {
+    padding: 10px 5px;
+    border-bottom: 1px solid #333;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .branch-list li:last-child {
+    border-bottom: none;
+  }
+  .branch-list .branch-name {
+    color: #58a6ff;
+  }
+  .branch-list .icon-link::after {
+    content: ' ↗';
+  }
+
+</style>
+
+<div class="page-container">
+  <!-- Seção Estrutura do Projeto -->
+  <div class="info-section">
+    <div class="text-card">
+      <h2>Estrutura do Projeto</h2>
+      <p>
+        Este projeto é organizado por pastas: "App" e "chatbot_api" são as seções principais, cada uma com sua função.
+      </p>
+      <p>
+        Arquivos como <code>manage.py</code> são ferramentas de controle, e o <code>db.sqlite3</code> armazena os dados.
+      </p>
+      <p>
+        Essa organização simplifica o desenvolvimento e a manutenção do projeto.
+      </p>
+      <p>
+        Esta estrutura é do <strong>framework Django.</strong>
+      </p>
+    </div>
+    <div class="image-card">
+        <ul class="file-tree">
+            <li class="folder"><span class="icon"></span><span>ChatBot_Hackathon_Jovem_Programador_Senac2025</span>
+                <ul class="sub-folder">
+                    <li class="folder"><span class="icon"></span><span>App</span></li>
+                    <li class="folder"><span class="icon"></span><span>chatbot_api</span></li>
+                    <li class="folder"><span class="icon"></span><span>venv</span></li>
+                    <li class="file"><span class="icon"></span>.gitattributes</li>
+                    <li class="file"><span class="icon"></span>.gitignore</li>
+                    <li class="file"><span class="icon"></span>db.sqlite3</li>
+                    <li class="file"><span class="icon"></span>LICENSE</li>
+                    <li class="file"><span class="icon"></span>manage.py</li>
+                    <li class="file"><span class="icon"></span>README.md</li>
+                    <li class="file"><span class="icon"></span>requirements.txt</li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+  </div>
+
+  <!-- Seção Estrutura do GitHub -->
+  <div class="info-section">
+    <div class="text-card">
+      <h2>Estrutura do GitHub</h2>
+      <p>
+        O projeto foi desenvolvido de forma colaborativa pelos integrantes da equipe, utilizando o GitHub com boas práticas de versionamento e organização de código. (main > dev > features*).
+      </p>
+    </div>
+    <div class="image-card">
+        <div class="branches-header">
+            <span>Overview</span>
+            <span>Yours</span>
+            <span>Active</span>
+            <span class="active">All</span>
+        </div>
+        <input type="text" placeholder="Search branches..." style="width: 100%; background-color: #333; border: 1px solid #555; color: white; padding: 8px; border-radius: 5px; margin-bottom: 15px;">
+        <ul class="branch-list">
+            <li><span class="branch-name">main</span> <span class="icon-link"></span></li>
+            <li><span class="branch-name">vinicius/feature/utils</span> <span class="icon-link"></span></li>
+            <li><span class="branch-name">matheus/feature/views</span> <span class="icon-link"></span></li>
+            <li><span class="branch-name">gustavo/feature/urls</span> <span class="icon-link"></span></li>
+            <li><span class="branch-name">hudson/feature/models</span> <span class="icon-link"></span></li>
+            <li><span class="branch-name">renato/feature/services</span> <span class="icon-link"></span></li>
+            <li><span class="branch-name">dev</span> <span class="icon-link"></span></li>
+        </ul>
+    </div>
+  </div>
+</div>
+{% endblock %}

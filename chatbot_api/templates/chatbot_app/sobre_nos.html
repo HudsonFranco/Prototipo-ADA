@@ -1,0 +1,158 @@
+{% extends 'chatbot_app/index.html' %}
+{% load static %}
+{% block content %}
+<style>
+  html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+  }
+  body {
+      background: linear-gradient(135deg, #000000 0%, #09033d 100%);    
+      background-attachment: fixed; /* Keep gradient fixed during scroll */
+  }
+
+  .intro-section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 50px;
+    padding: 60px 40px;
+    max-width: 1200px;
+    margin: auto;
+    color: #fff;
+  }
+
+  .intro-image img {
+    max-width: 530px;
+    border-radius: 20px;
+    filter: none !important;
+  }
+
+  .intro-text {
+    background: linear-gradient(135deg, #3d0073, #ff1f1f, #ff00b8);
+    padding: 30px;
+    border-radius: 25px;
+    max-width: 500px;
+  }
+
+  .intro-text h2 {
+    font-size: 2.8rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+  }
+
+  .intro-text p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: 15px;
+  }
+
+  .team-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(3, auto);
+    gap: 20px 80px;
+    padding: 40px;
+    max-width: 1200px;
+    margin: auto;
+    align-items: center;
+    min-height: 80vh; /* Ensure it takes up most of the screen */
+  }
+
+  .team-member {
+    display: flex;
+    align-items: center;
+    gap: 20px; /* Adds space between image and card */
+  }
+
+  .team-member img {
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    border: 4px solid #4a2f6c;
+    object-fit: cover;
+    flex-shrink: 0; /* Prevents image from shrinking */
+  }
+
+  .member-info {
+    background: linear-gradient(135deg, #0f0f0f, #3c2a56 50%, #0f0f0f);
+    color: #fff;
+    padding: 25px; /* Uniform padding */
+    border-radius: 20px;
+    width: 400px;
+    height: 150px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+  }
+
+  .member-info h3 {
+    font-size: 1.75rem;
+    font-weight: 700;
+    margin: 0 0 8px 0;
+  }
+
+  .member-info p {
+    font-size: 1.1rem;
+    line-height: 1.4;
+    margin: 0;
+    color: #ccc;
+  }
+  
+  /* Specific placements for the grid */
+  .team-member.gustavo { grid-column: 1 / 2; grid-row: 1 / 2; justify-self: end; }
+  .team-member.hudson { grid-column: 2 / 3; grid-row: 1 / 2; justify-self: start; }
+  .team-member.matheus { grid-column: 1 / 3; grid-row: 2 / 3; justify-self: center; }
+  .team-member.renato { grid-column: 1 / 2; grid-row: 3 / 4; justify-self: end; }
+  .team-member.vinicius { grid-column: 2 / 3; grid-row: 3 / 4; justify-self: start; }
+
+</style>
+
+<div class="intro-section">
+  <div class="intro-image">
+    <img src="{% static 'logo-python-rangers3 .png' %}" alt="Python Rangers Logo">
+  </div>
+  <div class="intro-text">
+    <h2>Python Rangers</h2>
+    <p>A Equipe Python Rangers foi criada pelos alunos <strong>Gustavo, Hudson, Mateus, Renato e Vinicius</strong> do programa <strong>Jovem Programador</strong> com o propósito de desenvolver o Trabalho Integrador do Chatbot e Hackton proposto pelo Senac.</p>
+    <p>Seu nome vem de um trocadilho com a série de televisão <strong>Power Rangers</strong> junto do nome da linguagem de programação <strong>Python</strong>. Sua logo se origina desse mesmo trocadilho, contendo serpentes (mascote da linguagem Python) vestidas com as armaduras dos personagens da série Power Rangers.</p>
+  </div>
+</div>
+
+<div class="team-grid">
+  <div class="team-member gustavo">
+    <img src="{% static 'gustavo.png' %}" alt="Gustavo Lohn">
+    <div class="member-info">
+      <h3>Gustavo Lohn</h3>
+      <p>Desenvolvedor Full-Stack<br>(Dev Front-End)</p>
+    </div>
+  </div>
+  <div class="team-member hudson">
+    <img src="{% static 'hudson.png' %}" alt="Hudson Franco">
+    <div class="member-info">
+      <h3>Hudson Franco</h3>
+      <p>Desenvolvedor Full-Stack<br>(Dev Back-End)</p>
+    </div>
+  </div>
+  <div class="team-member matheus">
+    <img src="{% static 'matheus.png' %}" alt="Matheus Moraes">
+    <div class="member-info">
+      <h3>Matheus Moraes</h3>
+      <p>Desenvolvedor Full-Stack<br>(Analista de Requisitos)</p>
+    </div>
+  </div>
+  <div class="team-member renato">
+    <img src="{% static 'renato.png' %}" alt="Renato Teodoro">
+    <div class="member-info">
+      <h3>Renato Teodoro</h3>
+      <p>Desenvolvedor Full-Stack<br>(Arquiteto de Software)</p>
+    </div>
+  </div>
+  <div class="team-member vinicius">
+    <img src="{% static 'vinicius.png' %}" alt="Vinícius Costa">
+    <div class="member-info">
+      <h3>Vinícius Costa</h3>
+      <p>Desenvolvedor Full-Stack<br>(Design UI/UX)</p>
+    </div>
+  </div>
+</div>
+{% endblock %}

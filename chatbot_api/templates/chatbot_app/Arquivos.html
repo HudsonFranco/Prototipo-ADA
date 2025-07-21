@@ -1,0 +1,306 @@
+{% extends 'chatbot_app/index.html' %}
+{% load static %}
+{% block content %}
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500&family=Segoe+UI:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      background: linear-gradient(135deg, #000000 0%, #09033d 100%);
+      color: #f0f0f0;
+    }
+    .container-arquivos {
+      padding: 30px;
+      margin: 0 auto;
+      max-width: 1300px;
+      width: 95%;
+    }
+    .main-content-arquivos {
+      display: flex;
+      flex-direction: column;
+      gap: 70px;
+    }
+    .file-row {
+      display: flex;
+      gap: 50px;
+      align-items: stretch;
+    }
+    .file-row:nth-child(even) {
+      flex-direction: row-reverse;
+    }
+    .text-content, .code-content {
+      flex: 1;
+      min-width: 0;
+      border-radius: 25px;
+      padding: 30px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .text-content {
+      background: linear-gradient(135deg, rgba(61, 0, 115, 0.5), rgba(255, 31, 31, 0.5), rgba(255, 0, 184, 0.5));
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+    .text-content-special {
+      background: linear-gradient(135deg, #0f0f0f, #3c2a56 50%, #0f0f0f);
+    }
+    .text-content h2 {
+      font-size: 2.8rem;
+      font-weight: 700;
+      margin-bottom: 20px;
+    }
+    .text-content p {
+      font-size: 1.3rem;
+      line-height: 1.6;
+    }
+    .code-content {
+      background-color: #1E1E1E;
+      padding: 10px;
+      font-family: 'Roboto Mono', monospace;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+    }
+    .code-header {
+        background-color: #333;
+        color: #ccc;
+        padding: 8px 15px;
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+        font-size: 0.9em;
+    }
+    .code-content pre {
+      margin: 0;
+      padding: 15px;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+      font-size: 0.95em;
+      line-height: 1.5;
+      overflow-x: auto;
+    }
+    .code-content code .keyword { color: #569CD6; }
+    .code-content code .function { color: #DCDCAA; }
+    .code-content code .string { color: #CE9178; }
+    .code-content code .comment { color: #6A9955; }
+    .code-content code .number { color: #B5CEA8; }
+    .code-content code .class { color: #4EC9B0; }
+    
+    @media (max-width: 900px) {
+      .file-row, .file-row:nth-child(even) {
+        flex-direction: column;
+      }
+    }
+    .location-container {
+        margin-top: 30px;
+        text-align: center;
+    }
+    .location-text {
+        margin-bottom: 10px;
+        font-size: 1.1rem;
+        color: #ccc;
+    }
+    .location-box {
+        display: inline-block;
+        border: 1px solid rgba(255, 255, 255, 0.6);
+        border-radius: 50px;
+        padding: 12px 30px;
+        background-color: rgba(0, 0, 0, 0.25);
+        font-family: 'Roboto Mono', monospace;
+        font-size: 1rem;
+    }
+  </style>
+
+  <div class="container-arquivos">
+    <div class="main-content-arquivos">
+
+      <!-- Linha 1: Cérebro Inteligente / services.py -->
+      <div class="file-row">
+        <div class="code-content">
+          <div class="code-header">api/services.py</div>
+          <pre><code><span class="keyword">from</span> openai <span class="keyword">import</span> OpenAI
+<span class="keyword">import</span> os
+
+client = <span class="function">OpenAI()</span>
+
+<span class="keyword">def</span> <span class="function">get_openai_response</span>(prompt_text, system_prompt_override=None):
+    <span class="comment">"""
+    Envia um prompt para a API da OpenAI e retorna a resposta do modelo.
+    Permite sobrescrever o system prompt.
+    """</span>
+    <span class="keyword">try</span>:
+        initial_system_prompt = system_prompt_override <span class="keyword">if</span> system_prompt_override <span class="keyword">else</span> ""
+        messages = [
+            {<span class="string">"role"</span>: <span class="string">"system"</span>, <span class="string">"content"</span>: initial_system_prompt},
+            {<span class="string">"role"</span>: <span class="string">"user"</span>, <span class="string">"content"</span>: prompt_text}
+        ]
+        chat_completion = client.chat.completions.create(
+            model=<span class="string">"gpt-4o"</span>,
+            messages=messages,
+            max_tokens=<span class="number">500</span>,
+            temperature=<span class="number">0.7</span>,
+        )
+        <span class="keyword">return</span> chat_completion.choices[<span class="number">0</span>].message.content
+    <span class="keyword">except</span> Exception <span class="keyword">as</span> e:
+        <span class="function">print</span>(<span class="string">f"Erro ao chamar a API da OpenAI: {e}"</span>)
+        <span class="keyword">return</span> <span class="string">"Desculpe, não consegui processar sua solicitação no momento."</span></code></pre>
+        </div>
+        <div class="text-content">
+          <h2>O Cérebro Inteligente</h2>
+          <p>Nossa inteligência artificial entende suas perguntas e cria respostas. Ela foi "treinada" para ser uma assistente amigável e usa a tecnologia GPT-4o da OpenAI (ChatGPT) para isso.</p>
+        <div class="location-container">
+              <p class="location-text">Onde está:</p>
+              <div class="location-box">
+                  services.py (chatbot_api)
+              </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Linha 2: Leitura do Site / utils.py -->
+      <div class="file-row">
+        <div class="code-content">
+          <div class="code-header">chatbot_api/utils.py</div>
+          <pre><code><span class="keyword">import</span> asyncio
+<span class="keyword">from</span> playwright.async_api <span class="keyword">import</span> async_playwright
+<span class="keyword">from</span> asgiref.sync <span class="keyword">import</span> sync_to_async
+<span class="keyword">from</span> .models <span class="keyword">import</span> ScrapedContent
+
+<span class="keyword">async def</span> <span class="function">scrape_jovemprogramador_playwright</span>():
+    base_url = <span class="string">"https://www.jovemprogramador.com.br"</span>
+    target_urls = [ <span class="comment"># Lista de URLs para buscar</span> ]
+    
+    <span class="keyword">async with</span> async_playwright() <span class="keyword">as</span> p:
+        browser = <span class="keyword">await</span> p.chromium.launch()
+        <span class="keyword">for</span> url <span class="keyword">in</span> target_urls:
+            page = <span class="keyword">await</span> browser.new_page()
+            <span class="keyword">await</span> page.goto(url)
+            
+            <span class="comment"># Extrai o texto de elementos relevantes</span>
+            elements = <span class="keyword">await</span> page.query_selector_all(<span class="string">'p, h1, h2, li'</span>)
+            <span class="keyword">for</span> element <span class="keyword">in</span> elements:
+                text = <span class="keyword">await</span> element.inner_text()
+                <span class="comment"># Salva o conteúdo no banco de dados</span>
+                <span class="keyword">await</span> sync_to_async(ScrapedContent.objects.update_or_create)(
+                    url=url,
+                    defaults={<span class="string">'content'</span>: text}
+                )
+            <span class="keyword">await</span> page.close()
+        <span class="keyword">await</span> browser.close()
+    <span class="keyword">return</span> <span class="string">"Conteúdo do site atualizado."</span></code></pre>
+        </div>
+        <div class="text-content text-content-special">
+          <h2>Leitura do Site (Web Scraping)</h2>
+          <p>O chatbot "navega" no site do Jovem Programador, lê o conteúdo e o guarda para responder suas perguntas com informações atualizadas, usando um "cache" para agilizar.</p>
+       <div class="location-container">
+              <p class="location-text">Onde está:</p>
+              <div class="location-box">
+                  utils.py (chatbot_api)
+              </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Linha 3: Armazenamento / models.py -->
+      <div class="file-row">
+        <div class="code-content">
+          <div class="code-header">chatbot_api/models.py</div>
+          <pre><code><span class="keyword">from</span> django.db <span class="keyword">import</span> models
+<span class="keyword">from</span> django.utils <span class="keyword">import</span> timezone
+
+<span class="keyword">class</span> <span class="class">Message</span>(models.Model):
+    session_id = models.CharField(max_length=<span class="number">255</span>)
+    sender = models.CharField(max_length=<span class="number">50</span>) <span class="comment"># 'user' ou 'bot'</span>
+    text = models.TextField()
+    timestamp = models.DateTimeField(default=timezone.now)
+
+    <span class="keyword">class</span> <span class="class">Meta</span>:
+        ordering = [<span class="string">'timestamp'</span>]
+
+<span class="keyword">class</span> <span class="class">ScrapedContent</span>(models.Model):
+    url = models.URLField(unique=<span class="keyword">True</span>)
+    content = models.TextField()
+    last_scraped = models.DateTimeField(default=timezone.now)
+    next_scrape_due = models.DateTimeField(null=<span class="keyword">True</span>)
+
+    <span class="keyword">def</span> <span class="function">__str__</span>(self):
+        <span class="keyword">return</span> <span class="string">f'Scraped: {self.url}'</span></code></pre>
+        </div>
+        <div class="text-content">
+          <h2>Armazenamento (Banco de Dados)</h2>
+          <p>O arquivo models.py é onde definimos como as informações (mensagens de chat ou os dados do site) são guardadas e organizadas, como se fossem formulários para coletar e estruturar esses dados.</p>
+        <div class="location-container">
+              <p class="location-text">Onde está:</p>
+              <div class="location-box">
+                  models.py (chatbot_api)
+              </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Linha 4: Roteador / urls.py -->
+      <div class="file-row">
+        <div class="code-content">
+          <div class="code-header">chatbot_api/urls.py</div>
+          <pre><code><span class="keyword">from</span> django.urls <span class="keyword">import</span> path
+<span class="keyword">from</span> . <span class="keyword">import</span> views
+
+app_name = <span class="string">'chatbot_app'</span>
+
+urlpatterns = [
+    path(<span class="string">''</span>, views.chatbot_view, name=<span class="string">'chatbot_view'</span>),
+]</code></pre>
+        </div>
+        <div class="text-content text-content-special">
+          <h2>O Roteador (URLs – Endereços Web)</h2>
+          <p>Quando você digita http://seusite.com/chat/, é como se estivesse batendo na porta certa para falar com o chatbot. O site sabe exatamente para onde mandar a sua pergunta, graças a um “mapa” chamado urls.py. Esse mapa direciona sua mensagem para o cérebro do chatbot, que usa uma inteligência artificial (IA) da OpenAI para entender o que você quer e responder de forma clara e rápida.sa a lógica e exibe a interface correta para a conversa.</p>
+        <div class="location-container">
+              <p class="location-text">Onde está:</p>
+              <div class="location-box">
+                  urls.py (chatbot_api)
+              </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Linha 5: O Maestro / views.py -->
+      <div class="file-row">
+        <div class="code-content">
+          <div class="code-header">chatbot_api/views.py</div>
+          <pre><code><span class="keyword">@csrf_exempt</span>
+<span class="keyword">async def</span> <span class="function">chatbot_view</span>(request):
+    session_id = request.session.session_key 
+    <span class="keyword">if not</span> session_id:
+        <span class="keyword">await</span> sync_to_async(request.session.save)()
+        session_id = request.session.session_key
+
+    <span class="keyword">if</span> request.method == <span class="string">'POST'</span>:
+        <span class="keyword">try</span>:
+            data = json.loads(request.body)
+            user_message_text = data.get(<span class="string">'message'</span>, <span class="string">''</span>).lower()
+
+            <span class="keyword">await</span> sync_to_async(Message.objects.create)(
+                session_id=session_id,
+                sender=<span class="string">'user'</span>,
+                text=user_message_text
+            )
+            
+            <span class="comment"># --- Lógica para determinar o system_prompt com base na pergunta ---</span>
+            
+            bot_response_text = get_openai_response(user_message_text, ...)
+
+            <span class="keyword">return</span> JsonResponse({<span class="string">'response'</span>: bot_response_text})
+        <span class="keyword">except</span> Exception <span class="keyword">as</span> e:
+            <span class="keyword">return</span> JsonResponse({<span class="string">'error'</span>: <span class="string">f'Ocorreu um erro: {e}'</span>}, status=<span class="number">500</span>)</code></pre>
+        </div>
+        <div class="text-content">
+          <h2>O Maestro (Views – A Lógica Principal)</h2>
+          <p>Essa função é como um maestro: recebe sua pergunta, decide se usa uma resposta pronta, busca no site ou pergunta à IA, organiza tudo e envia a resposta.</p>
+          <div class="location-container">
+              <p class="location-text">Onde está:</p>
+              <div class="location-box">
+                  views.py (chatbot_api)
+              </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+{% endblock %}

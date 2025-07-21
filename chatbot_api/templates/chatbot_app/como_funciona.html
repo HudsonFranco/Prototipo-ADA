@@ -1,0 +1,67 @@
+{% extends 'chatbot_app/index.html' %}
+{% load static %}
+{% block content %}
+  <style>
+    body {
+      background: linear-gradient(135deg, #000000 0%, #09033d 100%);
+    }
+  </style>
+    <div style="display: flex; justify-content: center; gap: 50px; margin-top: 50px;">
+      <!-- Card explicativo -->
+      <div style="background: linear-gradient(135deg, #3d0073, #ff1f1f, #ff00b8); border-radius: 25px; padding: 30px 35px; width: 480px; text-align: left; color: #fff; box-shadow: 0 0 30px #0002;">
+        <h2 style="font-size: 2.5rem; margin-bottom: 20px; font-weight: 700; color: #fff; text-shadow: 0 2px 10px #0004;">Como Funciona?</h2>
+        <p style="font-size: 1.15rem; line-height: 1.7;">
+          Pense no nosso chatbot como um "cérebro", exemplo:<br><br>
+           1 - Você faz a pergunta, digitando sua dúvida na tela do chat;<br><br>
+          <b>2 - O Chatbot pega sua pergunta e a envia para o "cérebro" (agente de IA).<br><br>
+          <b>3 - O cérebro recebe sua pergunta, processa e decide como respondê-la.
+        </p>
+      </div>
+      <!-- Card protótipo chatbot -->
+      <div style="background: #fafafc; border-radius: 25px; width: 480px; min-height: 500px; box-shadow: 0 0 30px #0002; display: flex; flex-direction: column; border: 4px solid #6a0dad;">
+        <div style="background: #6a0dad; color: #fff; border-top-left-radius: 21px; border-top-right-radius: 21px; padding: 12px 25px; font-weight: bold; font-size: 1.1rem; letter-spacing: 1px;">
+          PROTÓTIPO ADA
+        </div>
+        <div style="flex: 1; padding: 20px 25px 0 25px;">
+          <div style="background: #eaeaea; border-radius: 18px; padding: 8px 16px; color: #333; font-size: 1rem; width: fit-content; margin-bottom: 12px;">
+            Olá! Como posso ajudar você hoje?
+          </div>
+        </div>
+        <div style="padding: 12px 25px 20px 25px; display: flex; align-items: center; gap: 10px;">
+          <input type="text" disabled value="Digite sua mensagem..." style="flex:1; padding: 10px; border-radius: 20px; border: none; background: #3a3a5a; color: #e0e0e0; font-size: 0.95em;">
+          <button disabled style="background: #6a0dad; color: white; border: none; border-radius: 20px; padding: 10px 18px; font-size: 0.95em; cursor: not-allowed;">Enviar</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Seção Busca -->
+    <div style="margin-top: 60px;">
+      <div style="background: linear-gradient(135deg, #3d0073, #ff1f1f, #ff00b8); border-radius: 35px; padding: 30px 40px 18px 40px; max-width: 1020px; margin: 0 auto 50px auto;">
+        <h2 style="font-size: 2.7rem; font-weight: 700; color: #fff; margin-bottom: 10px; text-shadow: 0 2px 10px #0004;">Busca:</h2>
+        <p style="font-size: 1.25rem; color: #fff; margin-bottom: 0;">
+          A busca por resposta do Chat vem através de três tipos de “conhecimentos”, onde são utilizados de acordo com a pergunta feita a ele
+        </p>
+      </div>
+      <div style="display: flex; justify-content: center; gap: 40px;">
+        <div style="background: linear-gradient(135deg, #0f0f0f, #3c2a56 50%, #0f0f0f); border-radius: 30px; padding: 25px 22px; width: 315px; text-align: left; color: #fff; box-shadow: 0 0 20px #0002;">
+          <h3 style="font-size: 1.35rem; font-weight: 700; margin-bottom: 12px; color: #fff;">Conhecimento Fixo:</h3>
+          <p style="font-size: 1.05rem; line-height: 1.5;">
+            Para perguntas sobre “quem me criou” ou “qual meu nome”, ele já tem a resposta pronta.
+          </p>
+        </div>
+        <div style="background: linear-gradient(135deg, #0f0f0f, #3c2a56 50%, #0f0f0f); border-radius: 30px; padding: 25px 22px; width: 315px; text-align: left; color: #fff; box-shadow: 0 0 20px #0002;">
+          <h3 style="font-size: 1.35rem; font-weight: 700; margin-bottom: 12px; color: #fff;">Conhecimento do Site:</h3>
+          <p style="font-size: 1.05rem; line-height: 1.5;">
+            Para outras perguntas, ele “lê” o site do Jovem Programador para encontrar a informação.(web scraping)
+          </p>
+        </div>
+        <div style="background: linear-gradient(135deg, #0f0f0f, #3c2a56 50%, #0f0f0f); border-radius: 30px; padding: 25px 22px; width: 315px; text-align: left; color: #fff; box-shadow: 0 0 20px #0002;">
+          <h3 style="font-size: 1.35rem; font-weight: 700; margin-bottom: 12px; color: #fff;">Inteligência Artificial:</h3>
+          <p style="font-size: 1.05rem; line-height: 1.5;">
+            Para entender a pergunta e formular uma resposta clara e objetiva, criamos um agente de IA utilizando a api da openai (ChatGPT).
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}
