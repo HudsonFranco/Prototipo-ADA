@@ -1,9 +1,11 @@
 # chatbot_app/services.py
 
-from openai import OpenAI
 import os
+from openai import OpenAI
 
-client = OpenAI()
+api_key = os.getenv("OPENAI_API_KEY")
+client = OpenAI(api_key=api_key)
+
 
 def get_openai_response(prompt_text, history=None, system_prompt_override=None):
     """
