@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Documento de Requisitos – Chatbot Jovem Programador</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      margin: 20px;
+      background-color: #fefefe;
+      color: #333;
+    }
+    h1, h2, h3 {
+      color: #2c3e50;
+    }
+    code, pre {
+      background-color: #f0f0f0;
+      padding: 10px;
+      display: block;
+      border-radius: 5px;
+      overflow-x: auto;
+    }
+    ul {
+      list-style: disc;
+      margin-left: 20px;
+    }
+    li {
+      margin-bottom: 5px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>📄 Documento de Requisitos</h1>
+  <p><strong>Projeto Integrador – Chatbot Inteligente para o Jovem Programador</strong><br>
+  <strong>Equipe:</strong> Python Rangers<br>
+  <strong>Ano:</strong> 2025</p>
+
+  <hr>
+
+  <h2>🧠 Visão Geral</h2>
+  <p>
+    Este projeto tem como objetivo desenvolver um chatbot inteligente, utilizando Inteligência Artificial para responder dúvidas sobre o curso <strong>Jovem Programador</strong>, com base no conteúdo do site oficial:<br>
+    🔗 <a href="https://www.jovemprogramador.com.br" target="_blank">https://www.jovemprogramador.com.br</a>
+  </p>
+  <p>O sistema será dividido em duas etapas:</p>
+  <ul>
+    <li><strong>1º PI – Back-end:</strong> API, scraping, processamento de perguntas e respostas via IA.</li>
+    <li><strong>2º PI – Front-end:</strong> Interface web conectada à API, com boa experiência de usuário.</li>
+  </ul>
+
+  <h2>✅ Requisitos Funcionais</h2>
+
+  <h3>🔧 1º PI – Back-end</h3>
+  <ul>
+    <li>API para envio de perguntas e recebimento de respostas.</li>
+    <li>Módulo de leitura do conteúdo do site (crawler ou leitura de arquivo salvo).</li>
+    <li>Módulo de interpretação das perguntas (análise inteligente do conteúdo).</li>
+    <li>Módulo de resposta automática usando IA (sem cadastro manual de perguntas).</li>
+    <li>Mensagem padrão amigável caso a informação não seja encontrada.</li>
+    <li>Código limpo, documentado e versionado.</li>
+  </ul>
+
+  <h4>📦 Entregáveis – Back-end</h4>
+  <ul>
+    <li>Documento de requisitos (este).</li>
+    <li>Código-fonte da API e módulos de IA.</li>
+    <li>Scripts de uso da API.</li>
+    <li>Relatório de testes realizados.</li>
+    <li>Demonstração prática da API em funcionamento.</li>
+  </ul>
+
+  <h3>🖥️ 2º PI – Front-end</h3>
+  <ul>
+    <li>Página web com campo de perguntas.</li>
+    <li>Conexão com a API desenvolvida no 1º PI.</li>
+    <li>Exibição das respostas do chatbot de forma clara e organizada.</li>
+    <li>Aplicação de boas práticas de UX/UI.</li>
+    <li>Layout responsivo (acessível em celulares, tablets e PCs).</li>
+  </ul>
+
+  <h4>📦 Entregáveis – Front-end</h4>
+  <ul>
+    <li>Documento de requisitos (este).</li>
+    <li>Código-fonte da interface conectada à API.</li>
+    <li>Protótipo de interface.</li>
+    <li>Relatório de testes (funcionalidade e responsividade).</li>
+    <li>Demonstração prática da aplicação web.</li>
+  </ul>
+
+  <h2>🚫 Requisitos Não Funcionais</h2>
+  <ul>
+    <li>O sistema deve responder em até <strong>2 segundos</strong> em condições normais.</li>
+    <li>As senhas e chaves devem ser armazenadas de forma segura (variáveis de ambiente).</li>
+    <li>A API e o front-end devem ser documentados e seguir boas práticas de desenvolvimento.</li>
+    <li>O projeto deve ser versionado no GitHub com histórico de contribuições da equipe.</li>
+    <li>O código deve ser modular e reutilizável, facilitando manutenção e evolução.</li>
+    <li>A interface deve ser clara, responsiva e acessível.</li>
+    <li>O sistema deve funcionar em ambiente local e estar pronto para deploy em nuvem (Heroku, Render, etc.).</li>
+    <li>Deve haver testes básicos automatizados e manuais (ex.: <code>python manage.py test</code>).</li>
+  </ul>
+
+  <h2>🔁 Fluxo Geral do Sistema</h2>
+  <ol>
+    <li>Usuário acessa a página web.</li>
+    <li>Digita uma pergunta.</li>
+    <li>A interface envia a pergunta para a API (<code>/chat/</code>).</li>
+    <li>A API interpreta a pergunta, decide se usa scraping, IA ou uma resposta padrão.</li>
+    <li>A resposta é enviada de volta à interface.</li>
+    <li>O usuário visualiza a resposta em tempo real.</li>
+  </ol>
+
+  <h2>🧩 Tecnologias Previstas</h2>
+  <ul>
+    <li>Python 3.x + Django</li>
+    <li>Biblioteca de scraping (ex: BeautifulSoup, requests)</li>
+    <li>OpenAI API (ChatGPT)</li>
+    <li>HTML, CSS, JavaScript (ou framework como React/Vue)</li>
+    <li>Git + GitHub</li>
+    <li>Deploy em nuvem (opcional)</li>
+  </ul>
+
+  <h2>✨ Equipe Responsável</h2>
+  <p><strong>Python Rangers</strong> – Jovem Programador 2025</p>
+  <ul>
+    <li>Renato Teodoro</li>
+    <li>Matheus Moraes</li>
+    <li>Hudson Franco</li>
+    <li>Gustavo Lohn</li>
+    <li>Vinícius Costa</li>
+  </ul>
+
+  <!-- Plugin VLibras com botão no lado esquerdo -->
+  <div vw class="enabled">
+    <div vw-access-button class="active"></div>
+    <div vw-plugin-wrapper>
+      <div class="vw-plugin-top-wrapper"></div>
+    </div>
+  </div>
+  <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+  <script>
+    new window.VLibras.Widget('https://vlibras.gov.br/app');
+  </script>
+
+</body>
+</html>

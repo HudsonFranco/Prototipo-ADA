@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Chatbot Inteligente – Jovem Programador 2025</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      margin: 20px;
+      background-color: #f9f9f9;
+      color: #333;
+    }
+    h1, h2, h3 {
+      color: #2c3e50;
+    }
+    code, pre {
+      background-color: #eee;
+      padding: 10px;
+      display: block;
+      border-radius: 5px;
+      overflow-x: auto;
+    }
+    ul {
+      list-style: disc;
+      margin-left: 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>🤖 Chatbot Inteligente – Jovem Programador 2025</h1>
+  <p>
+    Este projeto é um chatbot com Inteligência Artificial, desenvolvido para responder dúvidas sobre o curso
+    <strong>Jovem Programador</strong>, interpretando dados reais do site oficial:
+    <a href="https://www.jovemprogramador.com.br" target="_blank">https://www.jovemprogramador.com.br</a>
+  </p>
+
+  <h2>📁 Estrutura do Projeto</h2>
+  <pre><code>CHATBOT_HACKATHON_JOVEM_PROGRAMADOR_SENAC2025/
+├── App/                 # Diretório principal de aplicação (views, urls, etc.)
+├── chatbot_api/         # Lógica de IA, scraping e integração com OpenAI
+├── venv/                # Ambiente virtual (não versionado)
+├── db.sqlite3           # Banco de dados local
+├── .gitignore           # Arquivos/ pastas ignorados no Git
+├── .gitattributes       # Configuração do GitHub para linguagens
+├── LICENSE              # Licença do projeto
+├── manage.py            # Utilitário principal do Django
+├── README.md            # Documentação principal do projeto
+└── requirements.txt     # Dependências Python do projeto</code></pre>
+
+  <h2>🚀 Como Executar o Projeto Localmente</h2>
+  <ol>
+    <li><strong>Clone o repositório:</strong>
+      <pre><code>git clone https://github.com/seu-usuario/chatbot-hackathon-2025.git
+cd chatbot-hackathon-2025</code></pre>
+    </li>
+    <li><strong>Crie e ative o ambiente virtual:</strong>
+      <pre><code>python -m venv venv
+source venv/bin/activate  # Linux/macOS
+venv\Scripts\activate     # Windows</code></pre>
+    </li>
+    <li><strong>Instale as dependências:</strong>
+      <pre><code>pip install -r requirements.txt</code></pre>
+    </li>
+    <li><strong>Configure o ambiente:</strong>
+      <p>Crie um <code>.env</code> ou defina variáveis diretamente no <code>settings.py</code>, como:</p>
+      <ul>
+        <li>OPENAI_API_KEY</li>
+        <li>DEBUG</li>
+        <li>SECRET_KEY</li>
+      </ul>
+    </li>
+    <li><strong>Execute as migrações e inicie o servidor:</strong>
+      <pre><code>python manage.py migrate
+python manage.py runserver</code></pre>
+    </li>
+  </ol>
+  <p>Acesse em: <code>http://127.0.0.1:8000/</code></p>
+
+  <h2>✅ Funcionalidades</h2>
+  <ul>
+    <li>Recebe perguntas dos usuários por meio de uma API.</li>
+    <li>Interpreta perguntas com base no conteúdo do site oficial.</li>
+    <li>Utiliza IA (OpenAI/ChatGPT) para formular respostas.</li>
+    <li>Responde com mensagens padrão caso não encontre a informação.</li>
+    <li>Interface web em desenvolvimento.</li>
+  </ul>
+
+  <h2>🧪 Testes</h2>
+  <pre><code>python manage.py test</code></pre>
+
+  <h2>🧠 Requisitos Não Funcionais</h2>
+  <ul>
+    <li>Código limpo, modular e documentado.</li>
+    <li>Tempo de resposta médio inferior a 2 segundos.</li>
+    <li>Layout responsivo para a interface.</li>
+    <li>Segurança com uso de <code>.env</code> ou variáveis externas.</li>
+    <li>Preparado para deploy em nuvem.</li>
+  </ul>
+
+  <h2>👥 Equipe</h2>
+  <p><strong>Python Rangers</strong> – Projeto Integrador | Jovem Programador 2025</p>
+  <ul>
+    <li>Renato Teodoro</li>
+    <li>Matheus Moraes</li>
+    <li>Hudson Franco</li>
+    <li>Gustavo Lohn</li>
+    <li>Vinícius Seeling</li>
+  </ul>
+
+  <h2>📄 Licença</h2>
+  <p>Este projeto é de uso educacional e colaborativo, voltado ao Hackathon do SENAC 2025. Licença: MIT/GPL</p>
+
+  <!-- Plugin VLibras com botão à esquerda -->
+  <div vw class="enabled">
+    <div vw-access-button class="active"></div>
+    <div vw-plugin-wrapper>
+      <div class="vw-plugin-top-wrapper"></div>
+    </div>
+  </div>
+  <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+  <script>
+    new window.VLibras.Widget('https://vlibras.gov.br/app');
+  </script>
+
+</body>
+</html>

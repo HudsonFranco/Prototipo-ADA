@@ -75,7 +75,7 @@ async def chatbot_view(request):
             # --- Lógica para determinar o system_prompt com base na pergunta ---
 
             # 1. Prioridade: Perguntas sobre a criação/hackaton (resposta fixa)
-            hackaton_keywords = ['quem está te desenvolvendo?']
+            hackaton_keywords = ['quem te criou?']
             hackaton_keywords0 = ['qual a sua idade?']
             hackaton_keywords1 = ['quais os patrocinadores?' ]
             hackaton_keywords2 = ['quais os parceiros?']
@@ -86,15 +86,15 @@ async def chatbot_view(request):
 
             if any(keyword in user_message_text for keyword in hackaton_keywords):
                 bot_response_text = (
-                    "Estou em fase de desenvolvimento pela equipe Python Rangers como projeto para o Hackaton do Senac Palhoça. "
-                    "A equipe é formada pelos alunos do curso Jovem Programador: "
+                    "Estou em fase de desenvolvimento pela equipe Python Rangers, sou um projeto para o Hackaton 2025!"
+                    "A equipe é formada pelos alunos do curso Jovem Programador do Senac de Palhoça/SC: "
                     "Renato Teodoro, Matheus Moraes, Hudson Franco, Gustavo Lohn e Vinícius Costa. "
                     "Professora: Karina Fernandes. Coordenador: Vladmir Machado. Gestor de Núcleo: Cleber Rodrigues. Diretora: Renata Scheidt"
                 )
 
             elif any(keyword in user_message_text for keyword in hackaton_keywords0):
                 bot_response_text = (
-                    "Ainda não saí do forno! Mas quando sair, lá por novembro de 2025, prometo que serei deliciosa e trarei muitas surpresas!"
+                    "No momento sou apenas um protótipo! Não nasci ainda! Mas quando nascer, lá por novembro de 2025, prometo que trarei muitas surpresas!"
                     "😜"
                 )
 
@@ -211,8 +211,9 @@ async def chatbot_view(request):
                 # System prompt para perguntas baseadas no site
                 system_prompt_site = (
                     "Você é ADA, uma assistente virtual criada para responder dúvidas com base em informações confiáveis do site Jovem Programador. "
-                    "Não use conhecimento geral da internet para responder a perguntas que se referem ao site. Se não se referir ao site avise e responda com base na internet de forma coerente. "
+                    "Não use conhecimento geral da internet para responder a perguntas que se referem ao site."
                     "Seja sempre prestativa, clara e educada nas respostas."
+                    "Diga ao usuário para refinar a pergunta se não encontrar informações relevantes."
                 )
 
                 if scraped_content and scraped_content != "CONTEUDO_NAO_ENCONTRADO_SITE": # Verificação dupla

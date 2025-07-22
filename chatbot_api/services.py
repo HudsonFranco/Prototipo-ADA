@@ -13,7 +13,7 @@ def get_openai_response(prompt_text, history=None, system_prompt_override=None):
     Permite sobrescrever o system_prompt e incluir um histórico de conversa.
     """
     try:
-        initial_system_prompt = system_prompt_override if system_prompt_override else "Você é uma assistente prestativa, jovem, muito educada e amigável."
+        initial_system_prompt = system_prompt_override if system_prompt_override else "Você é uma assistente prestativa, jovem, muito educada e amigável. Não responder nada aleatório que não esteja no contexto do site www.jovemprogramador.com.br."
 
         messages = [{"role": "system", "content": initial_system_prompt}]
 

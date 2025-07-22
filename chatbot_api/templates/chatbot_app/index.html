@@ -365,11 +365,11 @@
     {% endblock %}
 
     <button class="chatbot-toggle-button" onclick="toggleChatbot()">💬</button>
+    <button class="close-btn" onclick="toggleChatbot()">✖</button>
 
     <div class="chatbot-container" id="chatbot">
       <div class="chatbot-header">
-               PROTÓTIPO ADA
-        <button class="close-btn" onclick="toggleChatbot()">✖</button>
+        PROTÓTIPO ADA<img src="{% static 'JP_avatar.png' %}" style="width: 90px; height: 90px; vertical-align: middle; margin-right: 15px;" alt="ADA">
       </div>
       <div id="chat-box"></div>
       <div class="chatbot-input-area">
