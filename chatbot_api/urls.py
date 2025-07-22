@@ -14,4 +14,6 @@ urlpatterns = [
     path('sobre-nos/', views.sobre_nos, name='sobre_nos'),
     path('arquivos/', views.arquivos, name='arquivos'),
     path('consideracoes/', views.consideracoes, name='consideracoes'),
+    path('readme/', views.readme, name='readme'),
+    path('doc/', views.readme, name='doc'),
 ]

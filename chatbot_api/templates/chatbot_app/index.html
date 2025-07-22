@@ -4,7 +4,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Python Rangers - ChatBot</title>
+  <title>Python Rangers - ADA</title>
+  <link rel="icon" type="image/png" href="{% static 'Ada.png' %}">
   <style>
 
     
@@ -144,14 +145,14 @@
 
     .chatbot-container {
       position: fixed;
-      bottom: 90px;
-      right: 20px;
+      bottom: 80px;
+      right: 80px;
       background-color: #fafafc;
       border-radius: 15px;
       box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
       width: 100%;
-      max-width: 400px;
-      height: 500px;
+      max-width: 500px;
+      height: 600px;
       display: none;
       flex-direction: column;
       overflow: hidden;
@@ -163,7 +164,7 @@
       background-color: #1d0dad;
       color: white;
       padding: 15px 20px;
-      font-size: 1.2em;
+      font-size: 2em;
       font-weight: bold;
       display: flex;
       justify-content: space-between;
@@ -355,6 +356,20 @@
             <a href="{% url 'chatbot_app:sobre_nos' %}">Sobre Nós</a>
           {% endif %}
         </li>
+        <li>
+          {% if request.resolver_match.url_name == 'readme' %}
+            <strong><a href="{% url 'chatbot_app:readme' %}">Readme</a></strong>
+          {% else %}
+            <a href="{% url 'chatbot_app:readme' %}">Readme</a>
+          {% endif %}
+        </li>
+        <li>
+          {% if request.resolver_match.url_name == 'doc' %}
+            <strong><a href="{% url 'chatbot_app:doc' %}">Requisitos</a></strong>
+          {% else %}
+            <a href="{% url 'chatbot_app:doc' %}">Requisitos</a>
+          {% endif %}
+        </li>
       </ul>
     </nav>
 
@@ -365,11 +380,12 @@
     {% endblock %}
 
     <button class="chatbot-toggle-button" onclick="toggleChatbot()">💬</button>
-    <button class="close-btn" onclick="toggleChatbot()">✖</button>
+    <!-- <button class="close-btn" onclick="toggleChatbot()">✖</button> -->
 
     <div class="chatbot-container" id="chatbot">
       <div class="chatbot-header">
-        PROTÓTIPO ADA<img src="{% static 'JP_avatar.png' %}" style="width: 90px; height: 90px; vertical-align: middle; margin-right: 15px;" alt="ADA">
+        Protótipo ADA
+        <img src="{% static 'Ada.png' %}" style= "width: 130px; height: 130px;" >
       </div>
       <div id="chat-box"></div>
       <div class="chatbot-input-area">

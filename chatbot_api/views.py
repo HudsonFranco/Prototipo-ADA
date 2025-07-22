@@ -6,14 +6,12 @@ import re
 import asyncio 
 from django.utils import timezone
 from asgiref.sync import sync_to_async
-
 from .utils import scrape_jovemprogramador_playwright
 from .services import get_openai_response
 from .models import Message
 from asgiref.sync import sync_to_async
 from datetime import timedelta
 from .models import ScrapedContent
-
 from .utils import scrape_jovemprogramador_playwright
 from .services import get_openai_response
 from .models import Message
@@ -38,6 +36,12 @@ def arquivos(request):
 
 def consideracoes(request):
     return render(request, 'chatbot_app/Consideracoes.html')
+
+def readme(request):
+    return render(request, 'chatbot_app/readme.html')
+
+def doc(request):
+    return render(request, 'chatbot_app/doc.html')
 
 @csrf_exempt
 async def chatbot_view(request):
@@ -89,7 +93,7 @@ async def chatbot_view(request):
                     "Estou em fase de desenvolvimento pela equipe Python Rangers, sou um projeto para o Hackaton 2025!"
                     "A equipe é formada pelos alunos do curso Jovem Programador do Senac de Palhoça/SC: "
                     "Renato Teodoro, Matheus Moraes, Hudson Franco, Gustavo Lohn e Vinícius Costa. "
-                    "Professora: Karina Fernandes. Coordenador: Vladmir Machado. Gestor de Núcleo: Cleber Rodrigues. Diretora: Renata Scheidt"
+                    "Professora: Karina Fernandes. Coordenador: Vlademir Machado. Gestor de Núcleo: Cleber Rodrigues. Diretora: Renata Scheidt"
                 )
 
             elif any(keyword in user_message_text for keyword in hackaton_keywords0):
