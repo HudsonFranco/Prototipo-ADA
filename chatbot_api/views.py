@@ -75,26 +75,107 @@ async def chatbot_view(request):
             # --- Lógica para determinar o system_prompt com base na pergunta ---
 
             # 1. Prioridade: Perguntas sobre a criação/hackaton (resposta fixa)
-            hackaton_keywords = ['quem te criou', 'quem te fez', 'quem lhe criou', 'projeto hackaton', 'projeto do hackaton senac', 'equipe', 'time', 'desenvolvedor', 'senac', 'criada por', 'protótipo']
+            hackaton_keywords = ['quem está te desenvolvendo?']
+            hackaton_keywords0 = ['qual a sua idade?']
+            hackaton_keywords1 = ['quais os patrocinadores?' ]
+            hackaton_keywords2 = ['quais os parceiros?']
+            hackaton_keywords3 = ['quais os apoiadores?']
+            hackaton_keywords4 = ['em que linguagem você foi desenvolvida?']
+            
+
+
             if any(keyword in user_message_text for keyword in hackaton_keywords):
                 bot_response_text = (
-                    "Fui criada pela equipe Python Rangers como projeto para o Hackaton do Senac. "
+                    "Estou em fase de desenvolvimento pela equipe Python Rangers como projeto para o Hackaton do Senac Palhoça. "
                     "A equipe é formada pelos alunos do curso Jovem Programador: "
                     "Renato Teodoro, Matheus Moraes, Hudson Franco, Gustavo Lohn e Vinícius Costa. "
-                    "Professora responsável: Karina Fernandes. Coordenador do curso: Vladmir Machado. Gestor de Núcleo: Cleber Rodrigues."
+                    "Professora: Karina Fernandes. Coordenador: Vladmir Machado. Gestor de Núcleo: Cleber Rodrigues. Diretora: Renata Scheidt"
                 )
 
-            # 2. Segunda prioridade: Perguntas sobre a identidade geral da ADA (nome, quem é, propósito)
+            elif any(keyword in user_message_text for keyword in hackaton_keywords0):
+                bot_response_text = (
+                    "Ainda não saí do forno! Mas quando sair, lá por novembro de 2025, prometo que serei deliciosa e trarei muitas surpresas!"
+                    "😜"
+                )
+
+            if any(keyword in user_message_text for keyword in hackaton_keywords4):
+                bot_response_text = (
+                    
+                    "Na linguagem Python, utilizando o framework Django para futuras ampliações! Para a parte de IA, estou usando o OpenAI gpt-4o (ChatGPT). Para que eu possa ler o site Jovem Programador, estou raspando o conteúdo com Playwright. Para armazenar as mensagens e raspagens, estou usando o banco de dados SQLite."
+                )
+
+            
+
+            #Perguntas sobre a identidade geral da ADA (nome, quem é, propósito)
             # Nestes casos, a ADA DEVE usar conhecimento geral, não o site.
-            elif any(keyword in user_message_text for keyword in ['porque ada', 'seu nome', 'quem é você', 'sua identidade', 'sua origem', 'seu propósito', 'o que você faz', 'por que ada']):
+            elif any(keyword in user_message_text for keyword in ['porque ADA?']):
                 system_prompt_ada_identity = (
-                    "Você é ADA, uma assistente virtual criada para responder dúvidas com base em informações confiáveis. "
-                    "Quando o usuário perguntar sobre seu nome, identidade, origem ou propósito, você deve usar seu conhecimento geral para oferecer a melhor explicação possível. "
+                    
+                    "responda com um paragrafo curto que seu nome é uma homenagem da equipe Python Rangers em memória de Ada Lovelace, a primeira programadora do mundo."
                     "Seja sempre prestativa, clara e educada nas respostas."
-                    "Resumir para retornar um texto com no maximo 300 caracteres."
+                    "Resumir para retornar um texto com no maximo 200 caracteres."
                 )
                 # Não precisamos raspar o site para estas perguntas, então a chamada à raspagem é pulada.
                 bot_response_text = get_openai_response(user_message_text, history=history_for_api, system_prompt_override=system_prompt_ada_identity)
+
+            #Prioridade: Perguntas sobre a idade (resposta fixa)
+            elif any(keyword in user_message_text for keyword in hackaton_keywords1):
+                bot_response_text = (
+                    "Olá! Confira abaixo os patrocinadores do nosso evento:\n\n"
+
+                    "🎯 *Patrocinadores:*\n"
+                    "- Clubes Associados Software by Limber\n"
+                    "- DataRunk\n"
+                    "- Tecnológica\n"
+                    "- Senior\n"
+                    "- Radek\n"
+                    "- ADM Sistemas\n"
+                    "- DataInfo\n"
+                    "- Ap.Controle\n"
+                    "- Buss Construção\n"
+                    "- Grupo Softplan\n"
+                    "- KLab\n"
+                    "- NDD\n"
+                    "- CB Sistemas\n"
+                    "- WK\n"
+                    "- Loqquei\n"
+                    "- HartSystem Sistemas\n"
+                    "- Exímio\n"
+                    "- Dev10\n"
+                    "- CloudPark\n"
+                    "- DGSYS\n"
+                    "- Grupo BST Sistemas\n\n"
+                )
+                 #Prioridade: Perguntas sobre a idade (resposta fixa)
+            elif any(keyword in user_message_text for keyword in hackaton_keywords2):
+                bot_response_text = (
+                    "Olá! Confira abaixo os parceiros do nosso evento:\n\n"
+
+                    "🤝 *Parceiros:*\n"
+                    "- Senac\n"
+                    "- Seprosc\n\n"
+                )
+
+             #Prioridade: Perguntas sobre a idade (resposta fixa)
+            elif any(keyword in user_message_text for keyword in hackaton_keywords3):
+                bot_response_text = (
+                    "Olá! Confira abaixo os apoiadores do nosso evento:\n\n"
+
+                    "💡 *Apoiadores:*\n"
+                    "- Communitech\n"
+                    "- Somar\n"
+                    "- Orion\n"
+                    "- CIB – Centro de Inovação Blumenau\n"
+                    "- Novela Hub\n"
+                    "- Collabtech\n"
+                    "- Gene Conecta\n"
+                    "- CITeB\n"
+                    "- Inovale\n"
+                    "- Acate\n"
+                    "- Amureltec"
+                )
+
+
 
             # 3. Última prioridade: Todas as outras perguntas (raspar o site)
             else:

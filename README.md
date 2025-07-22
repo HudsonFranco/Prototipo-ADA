@@ -1,76 +1,106 @@
-# Chatbot Inteligente para o Jovem Programador
 
-## Visão Geral
+# 🤖 Chatbot Inteligente – Jovem Programador 2025
 
-Este repositório contém a API backend para o chatbot inteligente do curso Jovem Programador. Ele é responsável por:
-* Realizar web scraping no site oficial (`https://www.jovemprogramador.com.br`) para coletar informações sobre o curso.
-* Utilizar Inteligência Artificial (PLN) para interpretar perguntas dos usuários.
-* Gerar respostas automáticas com base nas informações extraídas do site.
-* Fornecer uma mensagem padrão caso a informação não seja encontrada.
+Este projeto é um chatbot com Inteligência Artificial, desenvolvido para responder dúvidas sobre o curso **Jovem Programador**, interpretando dados reais do site oficial:  
+🔗 https://www.jovemprogramador.com.br
 
-## Módulo do Projeto (1º PI - Back-end)
+---
 
-Este módulo foca na criação da API, estruturação da coleta e interpretação de informações do site, e resposta via IA.
+## 📁 Estrutura do Projeto
 
-## Tecnologias Utilizadas
+```
+CHATBOT_HACKATHON_JOVEM_PROGRAMADOR_SENAC2025/
+├── App/                 # Diretório principal de aplicação (views, urls, etc.)
+├── chatbot_api/         # Lógica de IA, scraping e integração com OpenAI
+├── venv/                # Ambiente virtual (não versionado)
+├── db.sqlite3           # Banco de dados local
+├── .gitignore           # Arquivos/ pastas ignorados no Git
+├── .gitattributes       # Configuração do GitHub para linguagens
+├── LICENSE              # Licença do projeto
+├── manage.py            # Utilitário principal do Django
+├── README.md            # Documentação principal do projeto
+└── requirements.txt     # Dependências Python do projeto
+```
 
-* **Python 3.x**
-* **Django**: Framework web para o backend.
-* **Django REST Framework**: Para construção da API RESTful.
-* **requests**: Para requisições HTTP (web scraping).
-* **BeautifulSoup4**: Para parsear HTML e extrair dados (web scraping).
-* **spaCy / NLTK**: Para Processamento de Linguagem Natural (PLN) e busca inteligente.
-* **scikit-learn**: Para cálculo de similaridade e outras técnicas de ML.
+---
 
-## Como Configurar o Ambiente de Desenvolvimento
+## 🚀 Como Executar o Projeto Localmente
 
-Siga estes passos para configurar seu ambiente local e começar a desenvolver:
+### 1. Clone o repositório
+```bash
+git clone https://github.com/seu-usuario/chatbot-hackathon-2025.git
+cd chatbot-hackathon-2025
+```
 
-1.  **Clone o repositório:**
-    ```bash
-    git clone [https://github.com/MatheusAntonioo/ChatBot_Hackathon_Jovem_Programador_Senac2025](https://github.com/MatheusAntonioo/ChatBot_Hackathon_Jovem_Programador_Senac2025)
-    cd ChatBot_Hackathon_Jovem_Programador_Senac2025
-    ```
+### 2. Crie e ative o ambiente virtual
+```bash
+python -m venv venv
+source venv/bin/activate  # Linux/macOS
+venv\Scripts\activate     # Windows
+```
 
-2.  **Crie e ative o Ambiente Virtual (`venv`):**
-    É altamente recomendado usar um ambiente virtual para gerenciar as dependências do projeto.
+### 3. Instale as dependências
+```bash
+pip install -r requirements.txt
+```
 
-    ```bash
-    python -m venv venv
-    # No Windows:
-    .\venv\Scripts\activate
-    # No macOS/Linux:
-    source venv/bin/activate
-    ```
+### 4. Configure o ambiente (se necessário)
+Crie um `.env` ou defina variáveis diretamente no `settings.py`, como:
+- `OPENAI_API_KEY`
+- `DEBUG`
+- `SECRET_KEY`
 
-3.  **Instale as Dependências:**
-    ```bash
-    pip install -r requirements.txt
-    ```
+### 5. Execute as migrações e inicie o servidor
+```bash
+python manage.py migrate
+python manage.py runserver
+```
 
-4.  **Configure sua Chave da API da OpenAI:**
-    * Obtenha sua chave da API da OpenAI no [site da OpenAI](https://platform.openai.com/account/api-keys).
-    * Na **raiz do projeto** (ao lado do arquivo `manage.py`), crie um novo arquivo chamado `.env`.
-    * Dentro do arquivo `.env`, adicione a seguinte linha, substituindo `SUA_CHAVE_DA_OPENAI` pela sua chave real:
-        ```
-        OPENAI_API_KEY="SUA_CHAVE_DA_OPENAI"
-        ```
-    * **Atenção:** O arquivo `.env` é ignorado pelo Git (não será versionado) por motivos de segurança. Nunca compartilhe sua chave de API publicamente!
+Acesse em: `http://127.0.0.1:8000/`
 
-5.  **Execute as Migrações do Django:**
-    ```bash
-    python manage.py migrate
-    ```
+---
 
-6.  **Crie um Superusuário (Opcional, para acessar o Admin do Django):**
-    ```bash
-    python manage.py createsuperuser
-    ```
+## ✅ Funcionalidades
 
-7.  **Inicie o Servidor de Desenvolvimento:**
-    ```bash
-    python manage.py runserver
-    ```
-    O servidor estará disponível em `http://127.0.0.1:8000/`.
+- Recebe perguntas dos usuários por meio de uma API.
+- Interpreta perguntas com base em conteúdo real do site oficial.
+- Utiliza IA (OpenAI/ChatGPT) para formular respostas automáticas.
+- Retorna mensagens padrão caso a informação não seja localizada.
+- Interface web (em desenvolvimento ou separada, se for o caso).
 
-## Estrutura do Projeto
+---
+
+## 🧪 Testes
+
+Para rodar os testes (se existirem ou forem implementados):
+```bash
+python manage.py test
+```
+
+---
+
+## 🧠 Requisitos Não Funcionais
+
+- Código limpo, modular e documentado.
+- Tempo de resposta médio inferior a 2 segundos.
+- Layout e estrutura responsiva (para a interface).
+- Segurança de dados sensíveis (uso de `.env` ou variáveis externas).
+- Preparado para deploy em nuvem (Heroku, Render, etc.).
+
+---
+
+## 👥 Equipe
+
+**Python Rangers** – Projeto Integrador | Jovem Programador 2025  
+- Renato Teodoro  
+- Matheus Moraes  
+- Hudson Franco  
+- Gustavo Lohn  
+- Vinícius Seeling
+
+---
+
+## 📄 Licença
+
+Este projeto é de uso educacional e colaborativo, voltado ao Hackathon do SENAC 2025.  
+Licença: MIT/GPL
