@@ -356,20 +356,6 @@
             <a href="{% url 'chatbot_app:sobre_nos' %}">Sobre Nós</a>
           {% endif %}
         </li>
-        <li>
-          {% if request.resolver_match.url_name == 'readme' %}
-            <strong><a href="{% url 'chatbot_app:readme' %}">Readme</a></strong>
-          {% else %}
-            <a href="{% url 'chatbot_app:readme' %}">Readme</a>
-          {% endif %}
-        </li>
-        <li>
-          {% if request.resolver_match.url_name == 'doc' %}
-            <strong><a href="{% url 'chatbot_app:doc' %}">Requisitos</a></strong>
-          {% else %}
-            <a href="{% url 'chatbot_app:doc' %}">Requisitos</a>
-          {% endif %}
-        </li>
       </ul>
     </nav>
 

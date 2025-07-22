@@ -4,7 +4,6 @@ from datetime import timedelta
 from django.utils import timezone
 from playwright.async_api import async_playwright
 from asgiref.sync import sync_to_async
-
 from .models import ScrapedContent
 
 async def scrape_jovemprogramador_playwright():
