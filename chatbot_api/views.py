@@ -188,7 +188,7 @@ async def chatbot_view(request):
                 
                 # Lógica de cache
                 cache_duration = timedelta(hours=24)
-                url_to_scrape = "http://jovemprogramador.org.br/"
+                url_to_scrape = "http://jovemprogramador.com.br/"
                 
                 try:
                     cached_content = await sync_to_async(ScrapedContent.objects.get)(

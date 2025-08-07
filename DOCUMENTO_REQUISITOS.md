@@ -97,4 +97,4 @@ O sistema será dividido em duas etapas:
 - Matheus Moraes  
 - Hudson Franco  
 - Gustavo Lohn  
-- Vinícius Costa
+- Vinícius Costa.
